@@ -33,7 +33,7 @@ class AdminCapabilitiesTable extends Table
         parent::initialize($config);
 
         $this->setTable('admin_capabilities');
-        $this->setDisplayField('id');
+        $this->setDisplayField('slug');
         $this->setPrimaryKey('id');
 
         $this->hasMany('RoleAdminCapabilities', [

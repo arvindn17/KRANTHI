@@ -7,17 +7,17 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * AdminUsers Model
+ * `adminUsers` Model
  *
  * @property \App\Model\Table\RolesTable|\Cake\ORM\Association\BelongsTo $Roles
  *
- * @method \App\Model\Entity\AdminUser get($primaryKey, $options = [])
- * @method \App\Model\Entity\AdminUser newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\AdminUser[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\AdminUser|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\AdminUser patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\AdminUser[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\AdminUser findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\`adminUsers` get($primaryKey, $options = [])
+ * @method \App\Model\Entity\`adminUsers` newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\`adminUsers`[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\`adminUsers`|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\`adminUsers` patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\`adminUsers`[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\`adminUsers` findOrCreate($search, callable $callback = null, $options = [])
  */
 class AdminUsersTable extends Table
 {
@@ -31,15 +31,8 @@ class AdminUsersTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-        $this->addBehavior('Timestamp', [
-            'events' => [
-                'Model.beforeSave' => [
-                    'creation_date' => 'new',
-                    'modification_date' => 'always'
-                ]
-            ]
-        ]);
-        $this->setTable('admin_users');
+
+        $this->setTable('`admin_users`');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
@@ -102,22 +95,5 @@ class AdminUsersTable extends Table
         $rules->add($rules->existsIn(['role_id'], 'Roles'));
 
         return $rules;
-    }
-    
-    public function findAuth(\Cake\ORM\Query $query, array $options)
-    {
-        $query->select([
-            'id', 'name', 'email', 'password', 'role_id', 'role'=>'Roles.role', 'admin_capabilities'=>'group_concat(AdminCapabilities.slug)'
-        ])->contain('Roles')->leftJoin([
-            'RoleAdminCapabilities' => $this->Roles->RoleAdminCapabilities->table()
-        ], [
-            'RoleAdminCapabilities.role_id = AdminUsers.role_id'
-        ])->leftJoin([
-            'AdminCapabilities' => $this->Roles->RoleAdminCapabilities->AdminCapabilities->table()
-        ], [
-            'AdminCapabilities.id = RoleAdminCapabilities.admin_capability_id'
-        ])->group('AdminUsers.id');
-        
-        return $query;
     }
 }

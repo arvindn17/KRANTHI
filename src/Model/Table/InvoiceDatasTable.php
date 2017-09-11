@@ -31,7 +31,14 @@ class InvoiceDatasTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-
+        $this->addBehavior('Timestamp', [
+            'events' => [
+                'Model.beforeSave' => [
+                    'creation_date' => 'new',
+                    'modification_date' => 'always'
+                ]
+            ]
+        ]);
         $this->setTable('invoice_datas');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');

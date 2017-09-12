@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 
@@ -25,6 +25,17 @@ class InvoicesController extends AppController
         $this->set(compact('invoices'));
         $this->set('_serialize', ['invoices']);
     }
+    
+    public function pastInvoice()
+    {
+       $this->loadModel("InvoiceDatas");
+       $invoiceDatas = $this->paginate($this->InvoiceDatas);//$this->InvoiceDatas->find("all",[])->toArray();
+      // echo "<pre>",print_r($rec);die; 
+       $this->set(compact('invoiceDatas'));
+        $this->set('_serialize', ['invoiceDatas']);
+    }
+    
+    
 
     /**
      * View method

@@ -20,7 +20,7 @@ class AdminUsersController extends AdminAppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Roles','Statuses']
+            'contain' => ['Roles']
         ];
         $adminUsers = $this->paginate($this->AdminUsers);
 
@@ -38,7 +38,7 @@ class AdminUsersController extends AdminAppController
     public function view($id = null)
     {
         $adminUser = $this->AdminUsers->get($id, [
-            'contain' => ['Roles','Statuses']
+            'contain' => ['Roles']
         ]);
 
         $this->set('adminUser', $adminUser);
@@ -65,8 +65,7 @@ class AdminUsersController extends AdminAppController
             $this->Flash->error(__('The admin user could not be saved. Please, try again.'));
         }
         $roles = $this->AdminUsers->Roles->find('list', ['limit' => 200]);
-        $statuses = $this->AdminUsers->Statuses->find('list', ['limit' => 200,'conditions'=>['id IN '=> [3,4]]]);
-        $this->set(compact('adminUser', 'roles','statuses'));
+        $this->set(compact('adminUser', 'roles'));
         $this->set('_serialize', ['adminUser']);
     }
 
@@ -92,8 +91,7 @@ class AdminUsersController extends AdminAppController
             $this->Flash->error(__('The admin user could not be saved. Please, try again.'));
         }
         $roles = $this->AdminUsers->Roles->find('list', ['limit' => 200]);
-        $statuses = $this->AdminUsers->Statuses->find('list', ['limit' => 200,'conditions'=>['id IN '=> [3,4]]]);
-        $this->set(compact('adminUser', 'roles','statuses'));
+        $this->set(compact('adminUser', 'roles'));
         $this->set('_serialize', ['adminUser']);
     }
 
@@ -118,7 +116,26 @@ class AdminUsersController extends AdminAppController
     }
     
     public function login(){
-        if ($this->Auth->user()) {
+$adminUser = $this->AdminUsers->newEntity();
+        
+$post['name']  = 'arvind';
+$post['email'] = 'arvindn17@gmail.com';
+$post['password']= 'arv123';
+$post['role_id']= '1';
+$post['status_id']= '1';
+
+            $post['creation_date']=date('Y-m-d H:i:s');
+
+/*
+            $adminUser = $this->AdminUsers->patchEntity($adminUser,$post);
+            if ($this->AdminUsers->save($adminUser)) {
+                $this->Flash->success(__('The admin user has been saved.'));
+die("here");
+
+                        }
+						echo "<pre>",print_R($this->AdminUsers);
+						die;*/
+     if ($this->Auth->user()) {
             $this->redirect($this->Auth->redirectUrl());
         }
         $this->set('title', 'Login');
@@ -126,6 +143,8 @@ class AdminUsersController extends AdminAppController
 
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
+			print_r($user);
+
             if ($user) {
                 $user['admin_capabilities'] = empty($user['admin_capabilities']) ? [] : explode(",", $user['admin_capabilities']);
                 $this->Auth->setUser($user);

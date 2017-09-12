@@ -47,6 +47,10 @@ class AdminUsersTable extends Table
             'foreignKey' => 'role_id',
             'joinType' => 'INNER'
         ]);
+        $this->belongsTo('Statuses', [
+            'foreignKey' => 'status_id',
+            'joinType' => 'INNER'
+        ]);
     }
 
     /**
@@ -100,6 +104,7 @@ class AdminUsersTable extends Table
     {
         $rules->add($rules->isUnique(['email']));
         $rules->add($rules->existsIn(['role_id'], 'Roles'));
+        $rules->add($rules->existsIn(['status_id'], 'Statuses'));
 
         return $rules;
     }

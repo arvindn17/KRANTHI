@@ -34,5 +34,9 @@
             <th scope="row"><?= __('Role') ?></th>
             <td><?= $adminUser->has('role') ? $this->Html->link($adminUser->role->role, ['controller' => 'Roles', 'action' => 'view', $adminUser->role->id]) : '' ?></td>
         </tr>
+        <tr>
+            <th scope="row"><?= __('Status') ?></th>
+            <td><?= $adminUser->has('status') ? $adminUser->status->status_name : '' ?></td>
+        </tr>
     </table>
 </div>

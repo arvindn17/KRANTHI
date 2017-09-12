@@ -20,6 +20,7 @@
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('email') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('role_id') ?></th>
+                <th scope="col"><?= __('Status') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('creation_date') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -31,6 +32,7 @@
                 <td><?= h($adminUser->name) ?></td>
                 <td><?= h($adminUser->email) ?></td>
                 <td><?= $adminUser->has('role') ? $this->Html->link($adminUser->role->role, ['controller' => 'Roles', 'action' => 'view', $adminUser->role->id]) : '' ?></td>
+                <td><?= h($adminUser->status->status_name) ?></td>
                 <td><?= h(($adminUser->creation_date)) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $adminUser->id]) ?>

@@ -64,7 +64,7 @@ return [
      *   You should treat it as extremely sensitive data.
      */
     'Security' => [
-        'salt' => env('SECURITY_SALT', '1a685ecd0a17aa6357ba6a7e1d5f05209bbd1ccece91b2fec9ffae5d151e5b12'),
+        'salt' => env('SECURITY_SALT', '30eb7a3f2ef21a2b1ebef0e436c980d4c4f1c545ce4df01fad404b8cdb5842ab'),
     ],
 
     /**
@@ -229,9 +229,9 @@ return [
              * the following line and set the port accordingly
              */
             //'port' => 'non_standard_port_number',
-            'username' => 'root',
-            'password' => 'root',
-            'database' => 'pdf_data',
+            'username' => 'krantam1_cake',
+            'password' => 'secret123*',
+            'database' => 'krantam1_kranthi_demo',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'flags' => [],

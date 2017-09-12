@@ -33,7 +33,7 @@ class StatusesTable extends Table
         parent::initialize($config);
 
         $this->setTable('statuses');
-        $this->setDisplayField('id');
+        $this->setDisplayField('status_name');
         $this->setPrimaryKey('id');
 
         $this->hasMany('InvoiceDatas', [

@@ -19,6 +19,7 @@
             echo $this->Form->control('email');
             echo $this->Form->control('password');
             echo $this->Form->control('role_id', ['options' => $roles]);
+            echo $this->Form->control('status_id', ['options' => $statuses]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

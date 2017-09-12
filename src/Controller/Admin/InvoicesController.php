@@ -34,7 +34,9 @@ class InvoicesController extends AppController
        $this->set(compact('invoiceDatas'));
         $this->set('_serialize', ['invoiceDatas']);
     }
-    
+    public function generateInvoice($id =null){
+        die("work in Progress!!");
+    }
     
 
     /**

@@ -24,6 +24,7 @@ class AdminCapabilitiesController extends AdminAppController
 
         $this->set(compact('adminCapabilities'));
         $this->set('_serialize', ['adminCapabilities']);
+        $this->set('title', 'Admin Capability List');
     }
 
     /**
@@ -41,6 +42,7 @@ class AdminCapabilitiesController extends AdminAppController
 
         $this->set('adminCapability', $adminCapability);
         $this->set('_serialize', ['adminCapability']);
+        $this->set('title', 'Capability Detail');
     }
 
     /**
@@ -62,6 +64,7 @@ class AdminCapabilitiesController extends AdminAppController
         }
         $this->set(compact('adminCapability'));
         $this->set('_serialize', ['adminCapability']);
+        $this->set('title', 'Add New Capability');
     }
 
     /**
@@ -87,6 +90,7 @@ class AdminCapabilitiesController extends AdminAppController
         }
         $this->set(compact('adminCapability'));
         $this->set('_serialize', ['adminCapability']);
+        $this->set('title', 'Edit Capability Detail');
     }
 
     /**

@@ -27,6 +27,7 @@ class RoleAdminCapabilitiesController extends AdminAppController
 
         $this->set(compact('roleAdminCapabilities'));
         $this->set('_serialize', ['roleAdminCapabilities']);
+        $this->set('title', 'Role Capability List');
     }
 
     /**
@@ -44,6 +45,7 @@ class RoleAdminCapabilitiesController extends AdminAppController
 
         $this->set('roleAdminCapability', $roleAdminCapability);
         $this->set('_serialize', ['roleAdminCapability']);
+        $this->set('title', 'Role Capability Detail');
     }
 
     /**
@@ -79,6 +81,7 @@ class RoleAdminCapabilitiesController extends AdminAppController
         $adminCapabilities = $this->RoleAdminCapabilities->AdminCapabilities->find('list', ['limit' => 200]);
         $this->set(compact('roleAdminCapability', 'roles', 'adminCapabilities'));
         $this->set('_serialize', ['roleAdminCapability']);
+        $this->set('title', 'Add New Role Capability List');
     }
 
     /**
@@ -106,6 +109,7 @@ class RoleAdminCapabilitiesController extends AdminAppController
         $adminCapabilities = $this->RoleAdminCapabilities->AdminCapabilities->find('list', ['limit' => 200]);
         $this->set(compact('roleAdminCapability', 'roles', 'adminCapabilities'));
         $this->set('_serialize', ['roleAdminCapability']);
+        $this->set('title', 'Edit Role Capability Detail');
     }
 
     /**

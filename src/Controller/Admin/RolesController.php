@@ -24,6 +24,7 @@ class RolesController extends AdminAppController
 
         $this->set(compact('roles'));
         $this->set('_serialize', ['roles']);
+        $this->set('title', 'Role List');
     }
 
     /**
@@ -41,6 +42,7 @@ class RolesController extends AdminAppController
 
         $this->set('role', $role);
         $this->set('_serialize', ['role']);
+        $this->set('title', $role['role'].' Role Detail');
     }
 
     /**
@@ -62,6 +64,7 @@ class RolesController extends AdminAppController
         }
         $this->set(compact('role'));
         $this->set('_serialize', ['role']);
+        $this->set('title', 'Add New Role');
     }
 
     /**
@@ -87,6 +90,7 @@ class RolesController extends AdminAppController
         }
         $this->set(compact('role'));
         $this->set('_serialize', ['role']);
+        $this->set('title', 'Edit '.$role['role'].' Role Detail');
     }
 
     /**

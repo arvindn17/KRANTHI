@@ -26,6 +26,7 @@ class AdminUsersController extends AdminAppController
 
         $this->set(compact('adminUsers'));
         $this->set('_serialize', ['adminUsers']);
+        $this->set('title', 'Admin User List');
     }
 
     /**
@@ -43,6 +44,7 @@ class AdminUsersController extends AdminAppController
 
         $this->set('adminUser', $adminUser);
         $this->set('_serialize', ['adminUser']);
+        $this->set('title', $adminUser->name.' Detail');
     }
 
     /**
@@ -68,6 +70,7 @@ class AdminUsersController extends AdminAppController
         $statuses = $this->AdminUsers->Statuses->find('list', ['limit' => 200,'conditions'=>['id IN '=> [3,4]]]);
         $this->set(compact('adminUser', 'roles','statuses'));
         $this->set('_serialize', ['adminUser']);
+        $this->set('title', 'Add New Admin');
     }
 
     /**
@@ -95,6 +98,7 @@ class AdminUsersController extends AdminAppController
         $statuses = $this->AdminUsers->Statuses->find('list', ['limit' => 200,'conditions'=>['id IN '=> [3,4]]]);
         $this->set(compact('adminUser', 'roles','statuses'));
         $this->set('_serialize', ['adminUser']);
+        $this->set('title', 'Edit '.$adminUser->name.' Detail');
     }
 
     /**

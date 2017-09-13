@@ -1,7 +1,7 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Admin;
 
-use App\Controller\AppController;
+use App\Controller\Admin\AdminAppController;
 
 /**
  * InvoiceDatas Controller
@@ -10,7 +10,7 @@ use App\Controller\AppController;
  *
  * @method \App\Model\Entity\InvoiceData[] paginate($object = null, array $settings = [])
  */
-class InvoiceDatasController extends AppController
+class InvoiceDatasController extends AdminAppController
 {
 
     /**
@@ -112,5 +112,22 @@ class InvoiceDatasController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+    
+    /**
+     * annexure method
+     *
+     * @return \Cake\Http\Response|void
+     */
+    public function annexure()
+    {
+        $this->paginate = [
+            'contain' => ['Statuses']
+        ];
+        $invoiceDatas = $this->paginate($this->InvoiceDatas);
+        $districtList= $this->__getDistrictList();
+        $this->set(compact('invoiceDatas','districtList'));
+        $this->set('_serialize', ['invoiceDatas']);
+        $this->set('title', 'Generate Annexure');
     }
 }

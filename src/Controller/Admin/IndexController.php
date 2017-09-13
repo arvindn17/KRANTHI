@@ -22,5 +22,6 @@ class IndexController extends AdminAppController {
         }
 //        $this->__printData($userSession);
         $this->set('userSessionDetails', $userSession);
+        $this->set('title', 'Admin Dashborad');
     }
 }

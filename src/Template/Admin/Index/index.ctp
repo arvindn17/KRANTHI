@@ -37,12 +37,12 @@
                 }
                 if(in_array('manage_invoice',$userSessionDetails['Backend']['admin_capabilities'])){
                     ?>
-                    <li><?php echo $this->Html->link(__('Manage Invoice'), ['controller' => 'Invoices', 'action' => 'pastInvoice']) ?></li>
+                    <li><?php echo $this->Html->link(__('Manage Invoice'), ['controller' => 'InvoiceDatas', 'action' => 'index']) ?></li>
                     <?php
                 }
                 if(in_array('manage_annexure',$userSessionDetails['Backend']['admin_capabilities'])){
                     ?>
-                    <li><?php echo $this->Html->link(__('Manage Annexure'), ['controller' => 'Invoices', 'action' => 'index']) ?></li>
+                    <li><?php echo $this->Html->link(__('Generate Annexure'), ['controller' => 'InvoiceDatas', 'action' => 'annexure']) ?></li>
                     <?php
                 }
             }

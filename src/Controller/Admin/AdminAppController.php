@@ -136,4 +136,76 @@ class AdminAppController extends Controller {
         }
     }
     
+    protected function __getDistrictList(){
+        $a=[
+            'Warangal Rural'=>'Warangal Rural',
+            'GadwaL'=>'GadwaL',
+            'J.S Bhupalpally'=>'J.S Bhupalpally',
+            'Karimnagar'=>'Karimnagar',
+            'Mahabubabad'=>'Mahabubabad',
+            'Medak Dist'=>'Medak Dist',
+            'Nalgonda'=>'Nalgonda',
+            'Ranga Reddy'=>'Ranga Reddy',
+            'Warangal Urban'=>'Warangal Urban'
+        ];
+        return $a;
+    }
+    
+    protected function __getDistrictPincodeList(){
+        $a=[
+            '506122'=>'Warangal Rural',
+            '509125'=>'GadwaL',
+            '506169'=>'J.S Bhupalpally',
+            '505001'=>'Karimnagar',
+            '506101'=>'Mahabubabad',
+            '502220'=>'Medak Dist',
+            '508001'=>'Nalgonda',
+            '501506'=>'Ranga Reddy',
+            '506002'=>'Warangal Urban'
+        ];
+        return $a;
+    }
+    
+    protected function __getDistrictPincodePriceList(){
+        $a=[
+            '506122'=>[
+                'district'=>'Warangal Rural',
+                'rate'=>'0.40'
+            ],
+            '509125'=>[
+                'district'=>'GadwaL',
+                'rate'=>'0.50'
+            ],
+            '506169'=>[
+                'district'=>'J.S Bhupalpally',
+                'rate'=>'0.38'
+            ],
+            '505001'=>[
+                'district'=>'Karimnagar',
+                'rate'=>'0.37'
+            ],
+            '506101'=>[
+                'district'=>'Mahabubabad',
+                'rate'=>'0.40'
+            ],
+            '502220'=>[
+                'district'=>'Medak Dist',
+                'rate'=>'0.56'
+            ],
+            '508001'=>[
+                'district'=>'Nalgonda',
+                'rate'=>'0.60'
+            ],
+            '501506'=>[
+                'district'=>'Ranga Reddy',
+                'rate'=>'0.40'
+            ],
+            '506002'=>[
+                'district'=>'Warangal Urban',
+                'rate'=>'0.37'
+            ]
+        ];
+        return $a;
+    }
+    
 }

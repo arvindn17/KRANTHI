@@ -12,30 +12,9 @@
         <li><?php // echo $this->Html->link(__('New Status'), ['controller' => 'Statuses', 'action' => 'add']) ?></li>
     </ul>
 </nav>-->
- <form type='post'>
-    <table  border=2  align='center' width='30%' style="min-width: 400px;">
-            <tr>
-                <th scope="col">From Date</th>
-                <th scope="col">
-                    <input type="text" name="date_from" id="date_from"> </input>
-                </th>
-
-            </tr>
-            <tr>
-                <th scope="col">To Date</th>
-                <th scope="col">
-                <input type="text" name="date_to" id="date_to"> </input>
-               </th>
-
-            </tr>
-            <tr>
-                <th scope="col" colspan ='2' align='center'><input type='submit' value='search'></th>
-
-            </tr>
-
-
-        </table>
-</form>
+ <?php
+ $this->element('search_filter');
+ ?>
 <div class="invoiceDatas index large-12 medium-12 columns content">
     <h3><?= __('Invoice Datas') ?></h3>
    
@@ -75,20 +54,10 @@
                 <td><?= h($invoiceData->number_of_animals) ?></td>
                 <td><?= $this->Number->format($invoiceData->rupees_per_kilometer) ?></td>
                 <td><?= $this->Number->format($invoiceData->total_amount) ?></td>
-                <!--<td><?php //echo $invoiceData->has('status') ? $this->Html->link($invoiceData->status->id, ['controller' => 'Statuses', 'action' => 'view', $invoiceData->status->id]) : '' ?></td>-->
-<!--                <td><?php // echo  h($invoiceData->creation_date) ?></td>
-                <td><?php // echo h($invoiceData->modification_date) ?></td>-->
                 <td class="actions">
-                    
                     <?php
                      echo  $this->Html->link(__('Invoice'), ['action' => 'generateInvoice', $invoiceData->id]) ;
-//                   
-                    
-//                    echo  $this->Html->link(__('View'), ['action' => 'view', $invoiceData->id]) ;
-//                    echo $this->Html->link(__('Edit'), ['action' => 'edit', $invoiceData->id]) ;
-//                    echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $invoiceData->id], ['confirm' => __('Are you sure you want to delete # {0}?', $invoiceData->id)]);
-//                    
-                    ?>
+                     ?>
                 
                 </td>
             </tr>

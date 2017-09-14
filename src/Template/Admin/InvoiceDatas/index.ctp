@@ -1,9 +1,29 @@
-<?php
+ <!-- Include Required Prerequisites -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
+ 
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+    <?php
 /**
   * @var \App\View\AppView $this
   * @var \App\Model\Entity\InvoiceData[]|\Cake\Collection\CollectionInterface $invoiceDatas
   */
+echo $this->html->script( [ 
+//    "jQuery-2.1.4.min", 'jquery-ui.min',
+   // "bootstrap-datetimepicker.min" ,
+    "custom"
+    ] );
 ?>
+<style>
+   #daterangepicker_end, #daterangepicker_start, #date_from{
+        width :40px;
+    }
+ </style> <?php
+echo $this->element('search_filter');
+ ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -12,8 +32,10 @@
         <li><?= $this->Html->link(__('New Status'), ['controller' => 'Statuses', 'action' => 'add']) ?></li>
     </ul>
 </nav>
+
 <div class="invoiceDatas index large-9 medium-8 columns content">
     <h3><?= __('Invoice Datas') ?></h3>
+   
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>

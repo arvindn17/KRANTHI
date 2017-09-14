@@ -2,6 +2,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\Admin\AdminAppController;
+use Cake\Routing\Router;
 
 /**
  * InvoiceDatas Controller
@@ -18,11 +19,25 @@ class InvoiceDatasController extends AdminAppController
      *
      * @return \Cake\Http\Response|void
      */
+    
     public function index()
     {
-        $this->paginate = [
+        $this->viewBuilder()->layout('');
+        $dateRange = isset( $_GET["date_from"] ) ? $_GET["date_from"] : "";
+        $conditions = [];
+        if( $dateRange !=''){
+            $dateRangeArr= $this->dateSplit($dateRange);
+            if( isset($dateRangeArr["startDate"]) && isset( $dateRangeArr["endDate"] ) ) {
+            $conditions = [ 'conditions' => [
+                                'date >= ' => $dateRangeArr["startDate"],
+                                'date <= ' => $dateRangeArr["endDate"]
+                            ]];    
+            }
+        }
+        //print_r($dateRangeArr);die;
+        $this->paginate = array_merge( [
             'contain' => ['Statuses']
-        ];
+           ], $conditions);
         $invoiceDatas = $this->paginate($this->InvoiceDatas);
 
         $this->set(compact('invoiceDatas'));
@@ -129,5 +144,15 @@ class InvoiceDatasController extends AdminAppController
         $this->set(compact('invoiceDatas','districtList'));
         $this->set('_serialize', ['invoiceDatas']);
         $this->set('title', 'Generate Annexure');
+    }
+    public function generateInvoice($id =0){
+     // echo  ROOT . DS .'webroot/css/bootstrap.css';die;
+        $rec =$this->InvoiceDatas->get($id)->toArray();
+                $this->viewBuilder()->layout('');
+                $this->set("invoiceData",$rec);
+            $html =   $this->render("/Admin/Element/past_invoice");
+           // echo "here".$html;die;
+      //  $html="<html><body>pdf demo</body></html>";
+       $this->generatePdf($html);die;
     }
 }

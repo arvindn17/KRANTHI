@@ -26,11 +26,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+    <?php //  echo $this->Html->css('base.css') ?>
+    <?php // echo $this->Html->css('cake.css') ?>
 
     <?= $this->fetch('meta') ?>
-    <?= $this->fetch('css') ?>
+    <?php // echo $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
 <body>
@@ -49,9 +49,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </nav>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
+   
         <?= $this->fetch('content') ?>
     </div>
     <footer>
+        
     </footer>
 </body>
 </html>

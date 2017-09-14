@@ -207,5 +207,42 @@ class AdminAppController extends Controller {
         ];
         return $a;
     }
-    
+    /**
+     * split date time piucker range int start date and end date else returnfalse; 
+     * @param type $dateString
+     * @return boolean
+     */
+    public function dateSplit( $dateString ){
+        
+        $dateArr = explode( '-', $dateString);
+        if( count($dateArr)!=2 ){ 
+            return false;
+        }          
+        $startDate = $dateArr[0];
+        $endDate   = $dateArr[1];
+        $startDateArr = explode("/", $startDate);
+        $endDateArr  = explode("/", $endDate);
+        
+        $startDate = trim($startDateArr[2])."-".trim($startDateArr[0])."-".trim($startDateArr[1]) ;
+        $endDate = trim($endDateArr[2])."-".trim($endDateArr[0])."-".trim($endDateArr[1]) ;
+        return array( "startDate" => $startDate, "endDate" => $endDate);
+        
+    }
+    /**
+     * 
+     * @param string $html
+     */
+    public function generatePdf($html){
+//echo '<pre>';print_r($_SESSION['postData']);die;
+       //$html = '<html><body> here</body></html>';
+        require_once  (ROOT . DS . 'vendor' .DS. "mpdf". DS ."vendor". DS."autoload.php");
+//       ROOT.'vendor/mpdf/vendor/autoload.php';
+
+        $mpdf = new \Mpdf\Mpdf(['mode' => 'c']);
+        $mpdf->WriteHTML(file_get_contents(ROOT . DS .'webroot'.DS.'css'.DS.'bootstrap.css'), 1);
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+
+
+    }
 }

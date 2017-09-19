@@ -14,6 +14,7 @@
  */
 $this->assign('title', $title);
 $cakeDescription = 'Kranthi: ';
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,7 +28,7 @@ $cakeDescription = 'Kranthi: ';
         <title><?= $cakeDescription ?><?= $this->fetch('title') ?></title>
         <?= $this->Html->meta('icon') ?>
         <?php
-        echo $this->Html->css(['cake','home','base'])
+        echo $this->Html->css(['cake','home','base','daterangepicker','invoice.bootstrap','jquery-ui'])
         ?>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -39,7 +40,7 @@ $cakeDescription = 'Kranthi: ';
         <script>
         </script>
         <?=
-        $this->Html->script(['jQuery-2.1.4.min']); //,
+        $this->Html->script(['jQuery-2.1.4.min','moment.min','daterangepicker','jquery-ui.min','custom']); //,
         ?>
     </head>
     <body>

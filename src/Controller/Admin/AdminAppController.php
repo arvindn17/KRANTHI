@@ -73,8 +73,17 @@ class AdminAppController extends Controller {
             //'ajaxLogin' => "ajaxUnAuthorizedAccess"
         ]);
         
-        $this->viewBuilder()->layout('admin_default');
-        
+        //$this->viewBuilder()->layout('admin_default');
+        $layout ='admin_default';
+         if(!empty($this->request->session()->read('Auth'))){
+            $userSession = $this->request->session()->read('Auth');
+            $layout = "admin_layout";
+        } else {
+            $userSession = array();
+        }
+        $this->viewBuilder()->layout($layout);
+//        $this->__printData($userSession);
+        $this->set('userSessionDetails', $userSession);
     }
 
     /**
@@ -232,16 +241,20 @@ class AdminAppController extends Controller {
      * 
      * @param string $html
      */
-    public function generatePdf($html){
-//echo '<pre>';print_r($_SESSION['postData']);die;
+    public function generatePdf($html,$invoice_number=''){
+//echo '<pre>';print_r($html);die;
        //$html = '<html><body> here</body></html>';
         require_once  (ROOT . DS . 'vendor' .DS. "mpdf". DS ."vendor". DS."autoload.php");
 //       ROOT.'vendor/mpdf/vendor/autoload.php';
-
+        if($invoice_number!=''){
+            $invoice_number=$invoice_number;
+        } else {
+            $invoice_number=date('HmdHis');
+        }
         $mpdf = new \Mpdf\Mpdf(['mode' => 'c']);
         $mpdf->WriteHTML(file_get_contents(ROOT . DS .'webroot'.DS.'css'.DS.'bootstrap.css'), 1);
         $mpdf->WriteHTML($html);
-        $mpdf->Output();
+        $mpdf->Output($invoice_number.'.pdf', 'I');
 
 
     }

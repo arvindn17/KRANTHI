@@ -1,101 +1,108 @@
- <!-- Include Required Prerequisites -->
-<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
- 
-<!-- Include Date Range Picker -->
-<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
-    <?php
-/**
-  * @var \App\View\AppView $this
-  * @var \App\Model\Entity\InvoiceData[]|\Cake\Collection\CollectionInterface $invoiceDatas
-  */
-echo $this->html->script( [ 
-//    "jQuery-2.1.4.min", 'jquery-ui.min',
-   // "bootstrap-datetimepicker.min" ,
-    "custom"
-    ] );
+<?php
+echo $this->element('search_filter',$conditions);
 ?>
-<style>
-   #daterangepicker_end, #daterangepicker_start, #date_from{
-        width :40px;
-    }
- </style> <?php
-echo $this->element('search_filter');
- ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Invoice Data'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Statuses'), ['controller' => 'Statuses', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Status'), ['controller' => 'Statuses', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
 
-<div class="invoiceDatas index large-9 medium-8 columns content">
-    <h3><?= __('Invoice Datas') ?></h3>
-   
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <!--<th scope="col"><?php // echo  $this->Paginator->sort('id') ?></th>-->
-                <th scope="col">serno </th>
-                
-                <th scope="col"><?= $this->Paginator->sort('invoice_number') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('district') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('date') ?></th>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Past Invoice
+        <small>Invoices</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="<?= Cake\Routing\Router::url(["controller" => "Index", "action" => "index"]) ?>"><i class="fa fa-dashboard"></i> KRANTHI
+                    </a></li>
+        <li> <a class="active" href="<?= Cake\Routing\Router::url(["controller" => "InvoiceDatas", "action" => "index"]) ?>">Past Invoice</a></li>
+        
+        </ol>
+    </section>
 
-<!--                <th scope="col"><?= $this->Paginator->sort('vehicle_number') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('starting_reding') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('ending_reding') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('number_of_kilometers') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('number_of_animals') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('rupees_per_kilometer') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('total_amount') ?></th>-->
-                <!--<th scope="col"><?php // echo  $this->Paginator->sort('status_id') ?></th>-->
-<!--                <th scope="col"><?php // echo $this->Paginator->sort('creation_date') ?></th>
-                <th scope="col"><?php //echo  $this->Paginator->sort('modification_date') ?></th>-->
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php 
-            $i=1;;
-            foreach ($invoiceDatas as $invoiceData): ?>
-            <tr>
-                <!--<td><?php // echo $this->Number->format($invoiceData->id) ?></td>-->
-                <td><?= $i++; ?></td>
-                <td><?= h($invoiceData->invoice_number) ?></td>
-                <td><?= h($invoiceData->district) ?></td>
-                <td><?= h($invoiceData->date) ?></td>
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">             <?php
+                if(in_array('manage_create_invoice', $this->request->session()->read('Auth')['Backend']['admin_capabilities'])){
+                    ?>
+                    <tr>
+                        <td colspan="6" style="text-align: right">
+                            <?php 
+                            echo $this->Html->link(__('Create Invoice'), ["controller" => "InvoiceDatas", "action" => "add"]);
+                            ?>
+                        </td>
+                    </tr>    
+                    <?php        
+                }
+                ?></h3>
+            </div>
+            <!-- /.box-header -->
+                       <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">S.No. </th>
+                        <th scope="col"><?= $this->Paginator->sort('invoice_number') ?></th>
+                        <th scope="col"><?= $this->Paginator->sort('district') ?></th>
+                        <th scope="col"><?= $this->Paginator->sort('date') ?></th>
+                        <td scope="col"><?= __('Status') ?></td>
+                        <th scope="col" class="actions"><?= __('Download') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
                 
-<!--                <td><?= h($invoiceData->pincode) ?></td>
-                <td><?= h($invoiceData->vehicle_number) ?></td>
-                <td><?= h($invoiceData->starting_reding) ?></td>
-                <td><?= h($invoiceData->ending_reding) ?></td>
-                <td><?= h($invoiceData->number_of_kilometers) ?></td>
-                <td><?= h($invoiceData->number_of_animals) ?></td>
-                <td><?= $this->Number->format($invoiceData->rupees_per_kilometer) ?></td>
-                <td><?= $this->Number->format($invoiceData->total_amount) ?></td>-->
-                <td class="actions">
-                    <?php
-                     echo  $this->Html->link(__('Invoice'), ['action' => 'generateInvoice', $invoiceData->id]) ;
-                     ?>
+                <?php
+                $i = 1;
+                foreach ($invoiceDatas as $invoiceData):
+                    ?>
+                    <tr>
+                        <td><?= $i++; ?></td>
+                        <td><?= h($invoiceData->invoice_number) ?></td>
+                        <td><?= h($invoiceData->district) ?></td>
+                        <td><?= h($invoiceData->date) ?></td>
+                        <td id="change-status-<?=h($invoiceData->id)?>">
+                            <?php 
+                            if(in_array('manage_status_change', $this->request->session()->read('Auth')['Backend']['admin_capabilities']) &&
+                                    $invoiceData->status->id==1)
+                            {
+                                ?>
+                                <a style="cursor: pointer" class="change-status" data-id="<?=h($invoiceData->id)?>"
+                                   data-name="<?=h($invoiceData->status->status_name);?>"><?=h($invoiceData->status->status_name);?></a>  
+                                <?php
+                            } else {
+                                echo h($invoiceData->status->status_name);
+                            }                            
+                            ?>
+                        </td>
+                        <td class="actions">
+                            <?php
+                            echo $this->Html->link($this->Html->image("pdf.png", ['alt' => 'logo']), ['action' => 'generateInvoice', $invoiceData->id], ['escape' => false]);
+//                         echo  $this->Html->link(__('Invoice'), ['action' => 'generateInvoice', $invoiceData->id]) ;
+                            ?>
+                        </td>
+                        <?php
+//                        if(in_array('manage_edit_invoice', $this->request->session()->read('Auth')['Backend']['admin_capabilities'])){
+                            ?>
+                            <!--<td><?= $this->Html->link(__('Edit'), ['action' => 'edit', $invoiceData->id]) ;?></td>-->    
+                            <?php
+//                        }
+                        ?>
+                    </tr>
+                    <?php endforeach; ?>
                 
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-<div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
-</div>
+                </tbody>
+              
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>

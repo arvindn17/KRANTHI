@@ -1,10 +1,10 @@
 <?php
 //echo "<pre>",print_R($invoiceData);
 extract($invoiceData);
+$f = new NumberFormatter('en', NumberFormatter::SPELLOUT);
 
 
-
-$date2 = $date1;
+$date2 = $date1= date('Y-m-d', strtotime($date));
 
 $sno = $id;
 
@@ -13,7 +13,7 @@ $animals = $number_of_animals;
 $rate_per_km = $rupees_per_kilometer;
 
 $net_amount = $total_amount;
-$amount_words = '';
+$amount_words = strtoupper($f->format($total_amount));
 $vevical_number  = $vehicle_number;
 $html ='
 <style>
@@ -131,7 +131,7 @@ $html ='
 			<td colspan="9" style="text-align:left; padding-left:2px;  border-left: 0; border-right: 0;">Amount In Words:</td>
        </tr>
        <tr style="border-bottom: 0; margin-bottom: 0; padding-bottom: 0;">
-			<td colspan="9" style="text-align:left; padding-left:2px;  border-left: 0; border-right: 0;">'.$amount_words.'</td>
+			<td colspan="9" style="text-align:left; padding-left:2px;  border-left: 0; border-right: 0;">'.$amount_words.' ONLY</td>
        </tr>
        </tbody>
        </table>

@@ -13,7 +13,7 @@ $(function () {
     $('input[name="date_from"]').on('cancel.daterangepicker', function (ev, picker) {
         $(this).val('');
     });
-    $('input#date').daterangepicker({
+    $('input#date_pdf').daterangepicker({
         singleDatePicker: true,
         showDropdowns: true,
         locale: {
@@ -78,7 +78,7 @@ $(document).ready(function () {
                         $('#change-status-'+id).text(response['data']);
                         var msg='<div class="message success" onclick="this.classList.add('+"'hidden'"+')">Status has been saved successfully.</div>';
                         $('.message').remove();
-                        $('.invoiceDatas').find('h3').before().append(msg);
+                        $('.msg-show').html(msg);
                     }
                 }
             }

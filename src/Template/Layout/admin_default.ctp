@@ -38,6 +38,7 @@ $cakeDescription = 'Kranthi: ';
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
         <script>
+            var WEBROOT_URL = '<?= $this->request->webroot ?>';
         </script>
         <?=
         $this->Html->script(['jQuery-2.1.4.min','moment.min','daterangepicker','jquery-ui.min','custom']); //,

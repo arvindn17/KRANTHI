@@ -193,9 +193,12 @@ class InvoiceDatasController extends AdminAppController {
             }
             $this->Flash->error(__('The invoice data could not be saved. Please, try again.'));
         }
+        $districtList= $this->__getDistrictPincodePriceList();
+        $dataArr = $this->__getInvoiceData();
         $statuses = $this->InvoiceDatas->Statuses->find('list', ['limit' => 200]);
-        $this->set(compact('invoiceData', 'statuses'));
+        $this->set(compact('invoiceData', 'statuses','districtList','dataArr'));
         $this->set('_serialize', ['invoiceData']);
+        $this->set('title','Edit Invoice');
     }
 
     /**

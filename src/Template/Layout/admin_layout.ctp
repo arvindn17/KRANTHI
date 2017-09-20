@@ -32,23 +32,12 @@ $cakeDescription = 'Kranthi: ';
             'ionicon.min', 'bootstrap', '../dist/css/AdminLTE.min.css', '../dist/css/skins/_all-skins.min.css']);
         echo 
         $this->Html->script(['jQuery-2.1.4.min','moment.min','daterangepicker',
-            'jquery-ui.min', 'custom', '../plugins/jQuery/jquery-2.2.3.min.js', '../bootstrap/js/bootstrap.min.js',
-            '../bootstrap/js/bootstrap.min.js', 'plugins/slimScroll/jquery.slimscroll.min.js', '../plugins/slimScroll/jquery.slimscroll.min.js'
-            , "../plugins/fastclick/fastclick.js", "../plugins/fastclick/fastclick.js", "../dist/js/app.min.js", "../dist/js/demo.js"]); 
-        ?>        
-<script>
-  $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-  });
-</script>
+            'jquery-ui.min', 'custom' 
+            , "../dist/js/app.min.js", "../dist/js/demo.js"]); 
+        ?> 
+        <script>
+            var WEBROOT_URL = '<?= $this->request->webroot ?>';
+        </script>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <!-- Main Header -->

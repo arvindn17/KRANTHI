@@ -33,7 +33,7 @@ echo $this->element('script',$dataArr);
         ?>
         <div class="input text required">
             <label for="date">Date</label>
-            <input name="date" required="required" id="date" type="text">
+            <input name="date" required="required" id="date_pdf" type="text"/>
         </div>   
         <?php
             echo $this->Form->control('vehicle_number');

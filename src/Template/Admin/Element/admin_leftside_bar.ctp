@@ -46,11 +46,6 @@
                     <li><?php echo $this->Html->link(__('Manage Role'), ['controller' => 'Roles', 'action' => 'index']) ?></li>
                     <?php
                 }
-                if(in_array('manage_admin_capabilities',$userSessionDetails['Backend']['admin_capabilities'])){
-                    ?>
-                    <li><?php echo $this->Html->link(__('Manage Admin Capabilities'), ['controller' => 'AdminCapabilities', 'action' => 'index']) ?></li>
-                    <?php
-                }
                 if(in_array('manage_admin_role_capabilities',$userSessionDetails['Backend']['admin_capabilities'])){
                     ?>
                     <li>

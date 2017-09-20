@@ -114,17 +114,8 @@ class AdminAppController extends Controller {
     }
     
     public function beforeFilter(\Cake\Event\Event $event) {
-        switch ($this->name) { 
-            case 'Products':
-                $this->Auth->allow(['addProductQuickEnquiry','editProductQuickEnquiry','addProductImage','uploadProductImages','copyImage',
-                    'deleteProductFromQuickEntryPage']);
-                break;
-            case 'AdminAjax' :
-                $this->Auth->allow(['getProductSizeList','getCategoryList','getNewProductCategoryRow','getProductAttributeList',
-                    'getNewProductVendorRow','getProductList','uploadProductImage','getProductListForEnquiry','addProductImages',
-                    'getNewProductSizeRow','addNewProductSizeRow','updateShippingMethod','getShippingCostMethods','getStateByCountry',
-                    'saveAddress']);
-                break;
+        if($this->name=='AdminCapabilities'){
+            $this->redirect(['controller'=>'Index','action'=>'index']);
         }
         $this->Auth->sessionKey = 'Auth.Backend';
     }
